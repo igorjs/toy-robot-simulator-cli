@@ -1,0 +1,28 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "CommonJS",
+    "types": ["jest", "node"],
+    "lib": ["ESNext"],
+    "rootDir": "src",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "strict": true,
+    "allowJs": false,
+    "sourceMap": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "importHelpers": true,
+    "noImplicitAny": true,
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules", "lib"]
+}
