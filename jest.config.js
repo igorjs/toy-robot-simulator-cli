@@ -4,22 +4,31 @@
  */
 module.exports = {
   preset: 'ts-jest',
+  clearMocks: true,
+  resetMocks: true,
+  restoreMocks: true,
   coverageDirectory: '.coverage',
   coverageProvider: 'v8',
   coverageThreshold: {
     global: {
-      branches: 50,
-      functions: 50,
-      lines: 50,
-      statements: 50,
+      branches: 70,
+      functions: 70,
+      lines: 70,
+      statements: 70,
     },
   },
-  collectCoverageFrom: ['src/**/*.{ts,js}', '!src/**/*.(test|spec).{ts,js}', '!src/cli/**', '!**/node_modules/**'],
+  // collectCoverageFrom: ['src/**/*.{ts,js}', '!src/**/*.(test|spec).{ts,js}', '!src/cli/**', '!**/node_modules/**'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,js}',
+    '!src/index.{ts,js}',
+    '!src/typings/**/*.{ts,js}',
+    '!src/**/*.(test|spec).{ts,js}',
+    '!**/node_modules/**',
+  ],
   moduleFileExtensions: ['ts', 'js', 'json'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
   testMatch: ['**/*.(test|spec).(ts|js)'],
   testEnvironment: 'node',
-  // setupFiles: ['./jest.setup.js'],
 }

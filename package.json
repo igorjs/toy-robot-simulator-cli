@@ -14,7 +14,7 @@
     "build": "tsc --build tsconfig.prod.json",
     "build:all": "npm run clean && npm run build",
     "start": "npm run build:all && npm link && trs",
-    "test": "npx jest --runInBand --detectOpenHandles --colors --verbose --coverage",
+    "test": "npx jest --runInBand --detectOpenHandles --colors --coverage --verbose --watch",
     "test:all": "npx jest --ci --runInBand --silent --colors --coverage",
     "test:file": "npm run build:all && npm link && trs commands.txt"
   },
@@ -33,6 +33,7 @@
     "@types/node": "^14.14.5",
     "jest": "^26.6.1",
     "jest-cli": "^26.6.1",
+    "mock-stdin": "^1.0.0",
     "ts-jest": "^26.4.3",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.5"
