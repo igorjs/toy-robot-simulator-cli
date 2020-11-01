@@ -14,7 +14,7 @@ export const printAppInfo = (): void => {
   console.log(
     cyan(
       '\nThis application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.\n',
-      'There`are no other obstructions on the table surface.\n',
+      'There are no other obstructions on the table surface.\n',
       'The robot is free to roam around the surface of the table.\n',
       'Any movement that would result in the robot falling from the table will be prevented, ',
       'however further valid movement commands must still be allowed.\n'
