@@ -24,7 +24,8 @@ jobs:
 
       - name: Run CI
         run: |
+          npm run clean
           npm ci
-          npm run lint
-          npm run test
-          npm run build --if-present
+          npm run test:all
+          npm run test:file
+          npm run build:all --if-present

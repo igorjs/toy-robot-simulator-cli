@@ -14,7 +14,7 @@
     "build": "tsc --build tsconfig.prod.json",
     "build:all": "npm run clean && npm run build",
     "start": "npm run build:all && npm link && trs",
-    "test": "npx jest --runInBand --detectOpenHandles --colors --coverage --verbose --watch",
+    "test": "npx jest --runInBand --detectOpenHandles --colors --coverage --verbose",
     "test:all": "npx jest --ci --runInBand --silent --colors --coverage",
     "test:file": "npm run build:all && npm link && trs commands.txt"
   },
