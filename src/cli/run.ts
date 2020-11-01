@@ -2,6 +2,8 @@ import * as parser from './parser'
 import * as message from './message'
 import * as terminal from './terminal'
 
+import * as RobotController from '../controllers/RobotController'
+
 const run = () => {
   const { tty, argv } = terminal.create()
 
@@ -22,7 +24,7 @@ const run = () => {
       message.printCommandList()
     } else {
       const { command, parameters } = parser.input(line)
-      console.log(command, parameters)
+      RobotController.execute(command, ...parameters)
     }
 
     tty.prompt(true)
