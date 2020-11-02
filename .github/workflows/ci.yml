@@ -26,8 +26,7 @@ jobs:
         run: |
           npm run clean
           npm ci
-          npm run test:all
-          npm run test:file
+          npm run test:ci
           npm run build:all --if-present
 
   coverage:
@@ -44,5 +43,5 @@ jobs:
       - name: Collect Coverage
         run: |
           npm ci
-          npm run test:all
+          npm run test:ci
           bash <(curl -s https://codecov.io/bash)
