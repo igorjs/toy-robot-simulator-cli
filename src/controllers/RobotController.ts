@@ -10,7 +10,9 @@ import * as PositionService from '../services/PositionService'
  * @param parameters {string[]}
  */
 export const execute = (command: string, ...parameters: string[]) => {
-  switch (command) {
+  const cmd = command.toUpperCase()
+
+  switch (cmd) {
     case ECommand.PLACE:
       if (parameters.length === 3) {
         const coordinates = {

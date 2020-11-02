@@ -41,6 +41,14 @@ export const printCommandList = (): void => {
 }
 
 /**
+ * Prints a "programa ready" messages to the user.
+ */
+export const printProgramReady = (): void => {
+  console.log(cyan('Press CTRL+C (Windows/Linux) or Cmd+C (MacOS) to finalise this program.\n'))
+  console.log(green('Start typing the commands:\n'))
+}
+
+/**
  * Prints a Farewell message to the user.
  */
 export const printGoodByeMessage = (): void => {

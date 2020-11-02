@@ -29,3 +29,4 @@ jobs:
           npm run test:all
           npm run test:file
           npm run build:all --if-present
+          bash <(curl -s https://codecov.io/bash)
