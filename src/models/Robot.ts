@@ -1,10 +1,11 @@
+import IRobot from '../typings/interfaces/IRobot'
 import IPosition from '../typings/interfaces/IPosition'
 
 /**
  * @export
  * @class Robot
  */
-export class Robot {
+export default class Robot implements IRobot {
   private static instance: Robot
 
   private position: IPosition = { coordinates: undefined, orientation: undefined }
@@ -37,6 +38,3 @@ export class Robot {
     return this.position
   }
 }
-
-// Export Robot Intance
-export default Robot.getInstance()
