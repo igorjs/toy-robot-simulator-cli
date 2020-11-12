@@ -1,4 +1,6 @@
 import EOrientation from '../typings/enums/EOrientation'
+import Robot from '../models/Robot'
+
 import * as PositionService from '../services/PositionService'
 import * as RobotController from './RobotController'
 
@@ -18,7 +20,7 @@ describe('RobotController', () => {
 
       expect(PositionService.place).toHaveBeenCalled()
       expect(PositionService.place).toHaveBeenCalledTimes(1)
-      expect(PositionService.place).toHaveBeenCalledWith({ x: 0, y: 0 }, EOrientation.N)
+      expect(PositionService.place).toHaveBeenCalledWith(Robot.getInstance(), { x: 0, y: 0 }, EOrientation.N)
     })
 
     it('execute MOVE command', () => {
@@ -26,6 +28,7 @@ describe('RobotController', () => {
 
       expect(PositionService.move).toHaveBeenCalled()
       expect(PositionService.move).toHaveBeenCalledTimes(1)
+      expect(PositionService.move).toHaveBeenCalledWith(Robot.getInstance())
     })
 
     it('execute RIGHT command', () => {
@@ -33,6 +36,7 @@ describe('RobotController', () => {
 
       expect(PositionService.turnRight).toHaveBeenCalled()
       expect(PositionService.turnRight).toHaveBeenCalledTimes(1)
+      expect(PositionService.turnRight).toHaveBeenCalledWith(Robot.getInstance())
     })
 
     it('execute LEFT command', () => {
@@ -40,6 +44,7 @@ describe('RobotController', () => {
 
       expect(PositionService.turnLeft).toHaveBeenCalled()
       expect(PositionService.turnLeft).toHaveBeenCalledTimes(1)
+      expect(PositionService.turnLeft).toHaveBeenCalledWith(Robot.getInstance())
     })
 
     it('execute REPORT command', () => {
@@ -50,6 +55,7 @@ describe('RobotController', () => {
       expect(spy).toHaveBeenCalled()
       expect(PositionService.report).toHaveBeenCalled()
       expect(PositionService.report).toHaveBeenCalledTimes(1)
+      expect(PositionService.report).toHaveBeenCalledWith(Robot.getInstance())
 
       spy.mockClear()
     })

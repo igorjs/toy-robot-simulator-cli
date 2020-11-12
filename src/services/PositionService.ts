@@ -1,20 +1,9 @@
+import IRobot from '../typings/interfaces/IRobot'
 import ICoordinate from '../typings/interfaces/ICoordinate'
-
 import EOrientation from '../typings/enums/EOrientation'
 import EDirection from '../typings/enums/EDirection'
 
-import Robot from '../models/Robot'
-
-/**
- * Validates input parameters against constraints.
- *
- * @param constraints {Object}
- */
-export const validateCoordinates = (coordinates: ICoordinate): boolean => {
-  const MATRIX_SIZE = 5 // FIXME: Move to a config file
-
-  return coordinates.x >= 0 && coordinates.y >= 0 && coordinates.x < MATRIX_SIZE && coordinates.y < MATRIX_SIZE
-}
+import * as CollisionDetectionService from './CollisionDetectionService'
 
 /**
  * Place the Robot at the specified posistion.
@@ -22,9 +11,9 @@ export const validateCoordinates = (coordinates: ICoordinate): boolean => {
  * @param coordinates {ICoordinate} the position for the X-Axis and Y-Axis on the table
  * @param orientation {EOrientation} which direction the Robot is facing
  */
-export const place = (coordinates: ICoordinate, orientation: EOrientation): void => {
-  if (orientation && validateCoordinates(coordinates)) {
-    Robot.setPosition({ orientation, coordinates })
+export const place = (robot: IRobot, coordinates: ICoordinate, orientation: EOrientation): void => {
+  if (orientation && CollisionDetectionService.validateCoordinates(coordinates)) {
+    robot.setPosition({ orientation, coordinates })
   }
 }
 
@@ -33,8 +22,8 @@ export const place = (coordinates: ICoordinate, orientation: EOrientation): void
  *
  * @param direction {EDirection} which direction the Robot should rotate. eg. Left or Right
  */
-const rotate = (direction: EDirection): void => {
-  const { coordinates, orientation } = Robot.getPosition()
+const rotate = (robot: IRobot, direction: EDirection): void => {
+  const { coordinates, orientation } = robot.getPosition()
 
   if (orientation) {
     const newOrientation = {
@@ -44,7 +33,7 @@ const rotate = (direction: EDirection): void => {
       [EOrientation.W]: EDirection.RIGHT === direction ? EOrientation.N : EOrientation.S,
     }[orientation]
 
-    Robot.setPosition({ coordinates, orientation: newOrientation })
+    robot.setPosition({ coordinates, orientation: newOrientation })
   }
 }
 
@@ -53,20 +42,20 @@ const rotate = (direction: EDirection): void => {
  *
  * @see rotate method
  */
-export const turnLeft = (): void => rotate(EDirection.LEFT)
+export const turnLeft = (robot: IRobot): void => rotate(robot, EDirection.LEFT)
 
 /**
  * Rotate the Robot clockwise.
  *
  * @see rotate method
  */
-export const turnRight = (): void => rotate(EDirection.RIGHT)
+export const turnRight = (robot: IRobot): void => rotate(robot, EDirection.RIGHT)
 
 /**
  * Move forward the Robot one block forward.
  */
-export const move = (): void => {
-  const { coordinates, orientation } = Robot.getPosition()
+export const move = (robot: IRobot): void => {
+  const { coordinates, orientation } = robot.getPosition()
 
   if (coordinates && orientation) {
     const newCoordinates = {
@@ -76,8 +65,8 @@ export const move = (): void => {
       [EOrientation.W]: { ...coordinates, x: coordinates.x - 1 },
     }[orientation]
 
-    if (validateCoordinates(newCoordinates)) {
-      Robot.setPosition({ coordinates: newCoordinates, orientation })
+    if (CollisionDetectionService.validateCoordinates(newCoordinates)) {
+      robot.setPosition({ coordinates: newCoordinates, orientation })
     }
   }
 }
@@ -85,8 +74,8 @@ export const move = (): void => {
 /**
  * Report the Robot current position.
  */
-export const report = (): string => {
-  const { coordinates, orientation } = Robot.getPosition()
+export const report = (robot: IRobot): string => {
+  const { coordinates, orientation } = robot.getPosition()
 
   if (coordinates && orientation) {
     return `${coordinates.x},${coordinates.y},${orientation}`
