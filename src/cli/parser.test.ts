@@ -5,6 +5,22 @@ describe('Parser', () => {
     console.log = jest.fn()
   })
 
+  it('tests input() with no command', () => {
+    const { command, parameters } = parser.input('')
+
+    expect(command).toBe('')
+    expect(parameters).toStrictEqual([])
+    expect(parameters.length).toBe(0)
+  })
+
+  it('tests input() with a space', () => {
+    const { command, parameters } = parser.input(' ')
+
+    expect(command).toBe('')
+    expect(parameters).toStrictEqual([''])
+    expect(parameters.length).toBe(1)
+  })
+
   it('tests input() with a command only', () => {
     const { command, parameters } = parser.input('ThisIsAcommand')
 

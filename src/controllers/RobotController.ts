@@ -37,6 +37,5 @@ export const execute = (command: string, ...parameters: string[]) => {
       break
     default:
       console.error('ERROR: Command not allowed')
-      break
   }
 }

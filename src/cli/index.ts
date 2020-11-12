@@ -16,7 +16,7 @@ const main = () => {
       message.printCommandList()
     } else if (/(quit|exit)/i.test(line)) {
       message.printGoodByeMessage()
-      tty.close()
+      process.exit(0)
     } else if (line.length > 0) {
       const { command, parameters } = parser.input(line)
       RobotController.execute(command, ...parameters)
@@ -25,7 +25,7 @@ const main = () => {
     }
 
     tty.prompt(true)
-  }, true)
+  })
 }
 
 export default main
