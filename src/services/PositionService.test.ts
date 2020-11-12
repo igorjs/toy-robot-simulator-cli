@@ -1,6 +1,6 @@
 import Robot from '../models/Robot'
 import EOrientation from '../typings/enums/EOrientation'
-import * as PositionService from '../services/PositionService'
+import * as PositionService from './PositionService'
 
 describe('PositionService', () => {
   beforeEach(() => {
