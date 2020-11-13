@@ -1,5 +1,7 @@
 import ICoordinate from '../typings/interfaces/ICoordinate'
 
+import * as PlayerService from './PlayerService'
+
 const MATRIX_SIZE = 5 // FIXME: Move to a config file
 
 const FIXED_OBSTACLES: ICoordinate[] = []
@@ -26,5 +28,22 @@ export const validateCoordinates = (coordinates: ICoordinate): boolean => {
     FIXED_OBSTACLES.length === 0 ||
     !FIXED_OBSTACLES.find((obstacle) => obstacle.x === coordinates.x && obstacle.y === coordinates.y)
 
-  return isRespectingTheBoundaries && hasAClearPathAhead
+  const otherPlayers = PlayerService.getOtherPlayers()
+
+  const willNotCollideWithOtherPlayer =
+    otherPlayers.length === 0 ||
+    !otherPlayers.find((player) => {
+      const playerCoordinates = player.getPosition().coordinates
+      return playerCoordinates?.x === coordinates.x && playerCoordinates?.y === coordinates.y
+    })
+
+  const willNotCollide = isRespectingTheBoundaries && hasAClearPathAhead && willNotCollideWithOtherPlayer
+
+  if (!willNotCollide) {
+    console.info(`You will collide with an obstacle. Do another move.`)
+  }
+
+  return willNotCollide
 }
+
+

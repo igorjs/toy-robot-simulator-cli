@@ -6,18 +6,11 @@ import IPosition from '../typings/interfaces/IPosition'
  * @class Robot
  */
 export default class Robot implements IRobot {
-  private static instance: Robot
-
+  private name: string = ''
   private position: IPosition = { coordinates: undefined, orientation: undefined }
 
-  private constructor() {}
-
-  public static getInstance(): Robot {
-    if (!Robot.instance) {
-      Robot.instance = new Robot()
-    }
-
-    return Robot.instance
+  constructor(name: string) {
+    this.name = name
   }
 
   /**
@@ -36,5 +29,10 @@ export default class Robot implements IRobot {
    */
   public getPosition(): IPosition {
     return this.position
+  }
+
+
+  public getName(): string {
+    return this.name
   }
 }

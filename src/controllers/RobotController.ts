@@ -1,8 +1,7 @@
 import ECommand from '../typings/enums/ECommand'
 import EOrientation from '../typings/enums/EOrientation'
 
-import Robot from '../models/Robot'
-
+import * as PlayerService from '../services/PlayerService'
 import * as PositionService from '../services/PositionService'
 
 /**
@@ -14,7 +13,7 @@ import * as PositionService from '../services/PositionService'
 export const execute = (command: string, ...parameters: string[]) => {
   const cmd = command.toUpperCase()
 
-  const robot = Robot.getInstance()
+  let robot = PlayerService.getCurrentPlayer()
 
   switch (cmd) {
     case ECommand.PLACE:
@@ -27,6 +26,9 @@ export const execute = (command: string, ...parameters: string[]) => {
         PositionService.place(robot, coordinates, orientation)
       }
       break
+    case ECommand.SWITCH:
+      PlayerService.switchPlayer()
+      break
     case ECommand.MOVE:
       PositionService.move(robot)
       break
@@ -37,7 +39,7 @@ export const execute = (command: string, ...parameters: string[]) => {
       PositionService.turnRight(robot)
       break
     case ECommand.REPORT:
-      console.info(PositionService.report(robot))
+      PlayerService.reportPlayers()
       break
     default:
       console.error('ERROR: Command not allowed')

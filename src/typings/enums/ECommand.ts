@@ -7,6 +7,7 @@
  * @prop REPORT {string} REPORT
  */
 enum ECommand {
+  SWITCH = 'SWITCH',
   PLACE = 'PLACE',
   MOVE = 'MOVE',
   LEFT = 'LEFT',
