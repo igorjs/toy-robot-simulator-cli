@@ -16,6 +16,15 @@ export const execute = (command: string, ...parameters: string[]) => {
   let robot = PlayerService.getCurrentPlayer()
 
   switch (cmd) {
+    case ECommand.ADD:
+      if (parameters.length === 1) {
+        const playerName = String(parameters[0])
+        PlayerService.addPlayer(playerName)
+      }
+      break
+    case ECommand.SWITCH:
+      PlayerService.switchPlayer()
+      break
     case ECommand.PLACE:
       if (parameters.length === 3) {
         const coordinates = {
@@ -23,20 +32,17 @@ export const execute = (command: string, ...parameters: string[]) => {
           y: parseInt(parameters[1], 10),
         }
         const orientation = EOrientation.parse(parameters[2])
-        PositionService.place(robot, coordinates, orientation)
+        PositionService.place(coordinates, orientation)
       }
       break
-    case ECommand.SWITCH:
-      PlayerService.switchPlayer()
-      break
     case ECommand.MOVE:
-      PositionService.move(robot)
+      PositionService.move()
       break
     case ECommand.LEFT:
-      PositionService.turnLeft(robot)
+      PositionService.turnLeft()
       break
     case ECommand.RIGHT:
-      PositionService.turnRight(robot)
+      PositionService.turnRight()
       break
     case ECommand.REPORT:
       PlayerService.reportPlayers()
