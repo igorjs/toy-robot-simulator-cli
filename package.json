@@ -23,7 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.0",
-    "figlet": "^1.5.0",
+    "figlet": "^1.5.2",
     "tslib": "^2.1.0"
   },
   "devDependencies": {
