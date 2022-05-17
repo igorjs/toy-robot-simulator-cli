@@ -1,17 +1,17 @@
 # Toy Robot Simulator CLI
 
-[![Build](https://github.com/igorjosesantos/toy-robot-simulator-cli/workflows/CI/badge.svg)](https://github.com/igorjosesantos/toy-robot-simulator-cli/actions?query=workflow%CI+branch%3Amaster)
-[![codecov](https://codecov.io/gh/igorjosesantos/toy-robot-simulator-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/igorjosesantos/toy-robot-simulator-cli)
-[![Known Vulnerabilities](https://snyk.io/test/github/igorjosesantos/toy-robot-simulator-cli/badge.svg?targetFile=package.json)](https://snyk.io/test/github/igorjosesantos/toy-robot-simulator-cli?targetFile=package.json)
+[![Build](https://github.com/igorjs/toy-robot-simulator-cli/workflows/CI/badge.svg)](https://github.com/igorjs/toy-robot-simulator-cli/actions?query=workflow%CI+branch%3Amaster)
+[![codecov](https://codecov.io/gh/igorjs/toy-robot-simulator-cli/branch/master/graph/badge.svg?token=K9TILWLVH4)](https://codecov.io/gh/igorjs/toy-robot-simulator-cli)
+[![Known Vulnerabilities](https://snyk.io/test/github/igorjs/toy-robot-simulator-cli/badge.svg?targetFile=package.json)](https://snyk.io/test/github/igorjs/toy-robot-simulator-cli?targetFile=package.json)
 [![Code Style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Semantic Release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Figorjosesantos%2Ftoy-robot-simulator-cli%2Fmaster%2Fpackage.json&label=Version&query=$.version&colorB=blue)](https://github.com/igorjosesantos/toy-robot-simulator-cli)
+[![Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Figorjs%2Ftoy-robot-simulator-cli%2Fmaster%2Fpackage.json&label=Version&query=$.version&colorB=blue)](https://github.com/igorjs/toy-robot-simulator-cli)
 
 ## Getting started
 
 ## Contributing Guidelines
 
-Do you wanna contribute with project? See more in [Contributing](https://github.com/igorjosesantos/toy-robot-simulator-cli/blob/master/CONTRIBUTING.md)
+Do you wanna contribute with project? See more in [Contributing](https://github.com/igorjs/toy-robot-simulator-cli/blob/master/CONTRIBUTING.md)
 
 ### Technologies Involved
 
@@ -82,7 +82,7 @@ Any movement that would result in the robot falling from the table will be preve
 
 ### Available Commands
 
-#### ADD <name>
+#### ADD \<name\>
 
 Will add a new player to the game.
 
