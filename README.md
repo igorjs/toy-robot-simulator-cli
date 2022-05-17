@@ -82,6 +82,14 @@ Any movement that would result in the robot falling from the table will be preve
 
 ### Available Commands
 
+#### ADD <name>
+
+Will add a new player to the game.
+
+#### SWITCH
+
+Will switch between players.
+
 #### PLACE X,Y,F
 
 Will put the robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.
