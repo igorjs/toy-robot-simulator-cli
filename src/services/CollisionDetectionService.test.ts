@@ -1,6 +1,15 @@
 import { addFixedObstacle, validateCoordinates } from './CollisionDetectionService'
 
 describe('CollisionDetectionService', () => {
+  beforeAll(() => {
+    console.log = jest.fn()
+    console.info = jest.fn()
+  })
+
+  afterAll(() => {
+    jest.clearAllMocks()
+  })
+
   describe('test addFixedObstacle method', () => {
     beforeAll(() => {
       addFixedObstacle({ x: 3, y: 3 })

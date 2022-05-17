@@ -38,4 +38,14 @@ export default class Robot implements IRobot {
   public isPresent(): boolean {
     return this.name !== '' && !!this.position.coordinates && !!this.position.orientation
   }
+
+  public report(): string {
+    const { coordinates, orientation } = this.position
+
+    if (coordinates && orientation) {
+      return `${this.name} is ${coordinates?.x},${coordinates?.y},${orientation}`
+    }
+
+    return `${this.name} is not in the arena yet!`
+  }
 }

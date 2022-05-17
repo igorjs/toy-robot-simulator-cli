@@ -16,6 +16,7 @@ enum ECommand {
   LEFT = 'LEFT',
   RIGHT = 'RIGHT',
   REPORT = 'REPORT',
+  REPORT_ALL = 'REPORTALL',
 }
 
 export default ECommand

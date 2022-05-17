@@ -7,34 +7,34 @@
     "trs": "./lib/index.js"
   },
   "main": "./lib/index.js",
+  "type": "commonjs",
   "scripts": {
     "postinstall": "npm prune",
     "clean": "rm -rf lib",
     "clean:all": "rm -rf lib node_modules",
     "build": "tsc --build tsconfig.prod.json",
     "build:all": "npm run clean && npm run build",
-    "start": "npm run build:all && npm link && trs",
-    "test": "npx jest --runInBand --detectOpenHandles --colors --coverage --verbose",
-    "test:ci": "npx jest --ci --runInBand --silent --colors --coverage",
-    "file": "npm run build:all && npm link && trs commands.txt"
+    "start": "npm run build:all && npm link && node ./lib/index.js",
+    "test": "jest --runInBand --detectOpenHandles --colors --coverage --verbose",
+    "test:ci": "jest --runInBand --detectOpenHandles --colors --coverage --colors --coverage --ci --silent",
+    "file": "npm run build:all && npm link && node ./lib/index.js commands.txt"
   },
   "keywords": [],
   "author": "Igor J. Santos",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.0",
     "figlet": "^1.5.0",
     "tslib": "^2.1.0"
   },
   "devDependencies": {
     "@types/clear": "^0.1.1",
     "@types/figlet": "^1.5.4",
-    "@types/jest": "^26.0.16",
-    "@types/node": "^14.14.41",
-    "jest": "^26.6.2",
-    "jest-cli": "^26.6.2",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.18",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
     "mock-stdin": "^1.0.0",
-    "ts-jest": "^26.4.3",
-    "typescript": "^4.2.2"
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
   }
 }

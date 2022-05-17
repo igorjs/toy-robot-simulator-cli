@@ -8,6 +8,7 @@ interface IRobot {
   getPosition: () => IPosition
   isPresent: () => boolean
   getName: () => string
+  report: () => string
 }
 
 export default IRobot

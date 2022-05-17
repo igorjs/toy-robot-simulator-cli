@@ -6,7 +6,9 @@ let currentPlayer: IRobot
 const PLAYERS: IRobot[] = []
 
 export const addPlayer = (name: string): void => {
-  PLAYERS.push(new Robot(name))
+  const player = new Robot(name)
+  setCurrentPlayer(player)
+  PLAYERS.push(player)
 }
 
 export const setCurrentPlayer = (player: IRobot): void => {
@@ -26,23 +28,20 @@ export const switchPlayer = (): void => {
 
   setCurrentPlayer(activePlayer)
 
-  console.info(`Now you're controlling: ${activePlayer.getName()}`)
+  console.info(`Now you're controlling: ${activePlayer?.getName()}`)
 }
 
-export const reportPlayers = (): void => {
-  if (PLAYERS.length === 0 ) {
+export const reportCurrentPlayer = (): void => {
+  const player = getCurrentPlayer()
+  console.info(player?.report())
+}
+
+export const reportAllPlayers = (): void => {
+  if (PLAYERS.length === 0) {
     console.info(`There is no Players in the arena.`)
   } else {
     PLAYERS.forEach((player) => {
-      const name = player.getName()
-
-      const { coordinates, orientation } = player.getPosition()
-
-      if (coordinates && orientation) {
-        console.info(`${name} is ${coordinates?.x},${coordinates?.y},${orientation}`)
-      } else {
-        console.info(`${name} is not in the arena yet!`)
-      }
+      console.info(player.report())
     })
   }
 }

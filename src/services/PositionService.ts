@@ -25,6 +25,8 @@ export const place = (coordinates: ICoordinate, orientation: EOrientation): void
 const rotate = (direction: EDirection): void => {
   const { coordinates, orientation } = getCurrentPlayer()?.getPosition()
 
+  // console.info('called ROTATE with', { direction, coordinates, orientation })
+
   if (orientation) {
     const newOrientation = {
       [EOrientation.N]: EDirection.RIGHT === direction ? EOrientation.E : EOrientation.W,

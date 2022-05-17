@@ -13,8 +13,6 @@ import * as PositionService from '../services/PositionService'
 export const execute = (command: string, ...parameters: string[]) => {
   const cmd = command.toUpperCase()
 
-  let robot = PlayerService.getCurrentPlayer()
-
   switch (cmd) {
     case ECommand.ADD:
       if (parameters.length === 1) {
@@ -45,7 +43,10 @@ export const execute = (command: string, ...parameters: string[]) => {
       PositionService.turnRight()
       break
     case ECommand.REPORT:
-      PlayerService.reportPlayers()
+      PlayerService.reportCurrentPlayer()
+      break
+    case ECommand.REPORT_ALL:
+      PlayerService.reportAllPlayers()
       break
     default:
       console.error('ERROR: Command not allowed')

@@ -3,6 +3,11 @@ import * as parser from './parser'
 describe('Parser', () => {
   beforeAll(() => {
     console.log = jest.fn()
+    console.info = jest.fn()
+  })
+
+  afterAll(() => {
+    jest.clearAllMocks()
   })
 
   it('tests input() with no command', () => {

@@ -3,6 +3,11 @@ import * as message from './message'
 describe('Messages', () => {
   beforeAll(() => {
     console.log = jest.fn()
+    console.info = jest.fn()
+  })
+
+  afterAll(() => {
+    jest.clearAllMocks()
   })
 
   it('tests printAppName() method', () => {

@@ -1,3 +1,4 @@
+ADD zig
 PLACE 0,0,NORTH
 MOVE
 MOVE

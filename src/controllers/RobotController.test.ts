@@ -1,18 +1,25 @@
 import EOrientation from '../typings/enums/EOrientation'
-import Robot from '../models/Robot'
+// import Robot from '../models/Robot'
 
+import * as PlayerService from '../services/PlayerService'
 import * as PositionService from '../services/PositionService'
 import * as RobotController from './RobotController'
 
 jest.mock('../services/PositionService')
+jest.mock('../services/PlayerService')
 
 describe('RobotController', () => {
-  describe('test execute method', () => {
-    beforeAll(() => {
-      console.info = jest.fn()
-      console.error = jest.fn()
-    })
+  beforeAll(() => {
+    console.log = jest.fn()
+    console.info = jest.fn()
+    console.error = jest.fn()
+  })
 
+  afterAll(() => {
+    jest.clearAllMocks()
+  })
+
+  describe('test execute method', () => {
     it('execute PLACE command', () => {
       const parameters = ['0', '0', 'NORTH']
 
@@ -20,7 +27,7 @@ describe('RobotController', () => {
 
       expect(PositionService.place).toHaveBeenCalled()
       expect(PositionService.place).toHaveBeenCalledTimes(1)
-      expect(PositionService.place).toHaveBeenCalledWith(Robot.getInstance(), { x: 0, y: 0 }, EOrientation.N)
+      expect(PositionService.place).toHaveBeenCalledWith({ x: 0, y: 0 }, EOrientation.N)
     })
 
     it('execute MOVE command', () => {
@@ -28,7 +35,7 @@ describe('RobotController', () => {
 
       expect(PositionService.move).toHaveBeenCalled()
       expect(PositionService.move).toHaveBeenCalledTimes(1)
-      expect(PositionService.move).toHaveBeenCalledWith(Robot.getInstance())
+      expect(PositionService.move).toHaveBeenCalledWith()
     })
 
     it('execute RIGHT command', () => {
@@ -36,7 +43,7 @@ describe('RobotController', () => {
 
       expect(PositionService.turnRight).toHaveBeenCalled()
       expect(PositionService.turnRight).toHaveBeenCalledTimes(1)
-      expect(PositionService.turnRight).toHaveBeenCalledWith(Robot.getInstance())
+      expect(PositionService.turnRight).toHaveBeenCalledWith()
     })
 
     it('execute LEFT command', () => {
@@ -44,36 +51,26 @@ describe('RobotController', () => {
 
       expect(PositionService.turnLeft).toHaveBeenCalled()
       expect(PositionService.turnLeft).toHaveBeenCalledTimes(1)
-      expect(PositionService.turnLeft).toHaveBeenCalledWith(Robot.getInstance())
+      expect(PositionService.turnLeft).toHaveBeenCalledWith()
     })
 
     it('execute REPORT command', () => {
-      const spy = jest.spyOn(console, 'info')
-
       RobotController.execute('REPORT')
 
-      expect(spy).toHaveBeenCalled()
-      expect(PositionService.report).toHaveBeenCalled()
-      expect(PositionService.report).toHaveBeenCalledTimes(1)
-      expect(PositionService.report).toHaveBeenCalledWith(Robot.getInstance())
-
-      spy.mockClear()
+      expect(PlayerService.reportCurrentPlayer).toHaveBeenCalled()
+      expect(PlayerService.reportCurrentPlayer).toHaveBeenCalledTimes(1)
+      expect(PlayerService.reportCurrentPlayer).toHaveBeenCalledWith()
     })
 
     it('ignore unhandled commands', () => {
-      const spy = jest.spyOn(console, 'error')
-
       RobotController.execute('XYZ')
 
-      expect(spy).toHaveBeenCalled()
-      expect(spy).toHaveBeenCalledWith('ERROR: Command not allowed')
       expect(PositionService.move).not.toHaveBeenCalled()
       expect(PositionService.place).not.toHaveBeenCalled()
-      expect(PositionService.report).not.toHaveBeenCalled()
       expect(PositionService.turnLeft).not.toHaveBeenCalled()
       expect(PositionService.turnRight).not.toHaveBeenCalled()
-
-      spy.mockClear()
+      expect(PlayerService.reportCurrentPlayer).not.toHaveBeenCalled()
+      expect(console.error).toHaveBeenCalledWith('ERROR: Command not allowed')
     })
   })
 })

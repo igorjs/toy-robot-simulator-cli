@@ -3,6 +3,10 @@ import * as process from 'process'
 import * as reader from './reader'
 
 describe('Reader', () => {
+  afterAll(() => {
+    jest.clearAllMocks()
+  })
+
   it('tests create()', (done) => {
     const stdin = mockStdin.stdin()
 
