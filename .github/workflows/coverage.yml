@@ -8,7 +8,7 @@ on:
 
 jobs:
   coverage:
-    name: Update Coverage Status
+    name: Collect coverage report
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +18,11 @@ jobs:
         with:
           node-version: 17
 
-      - name: Collect Coverage
+      - name: Run Tests
         run: |
+          npm run clean
           npm ci
-          npm run test:ci
-          bash <(curl -s https://codecov.io/bash)
+          npm run test:coverage
+
+      - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v3

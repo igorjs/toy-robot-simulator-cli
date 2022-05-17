@@ -16,7 +16,8 @@
     "build:all": "npm run clean && npm run build",
     "start": "npm run build:all && npm link && node ./lib/index.js",
     "test": "jest --runInBand --detectOpenHandles --colors --coverage --verbose",
-    "test:ci": "jest --runInBand --detectOpenHandles --colors --coverage --colors --coverage --ci --silent",
+    "test:ci": "jest --colors --ci --silent",
+    "test:coverage": "jest --colors --ci --silent --coverage",
     "file": "npm run build:all && npm link && node ./lib/index.js commands.txt"
   },
   "keywords": [],
