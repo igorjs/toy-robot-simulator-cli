@@ -31,8 +31,11 @@ export default class Robot implements IRobot {
     return this.position
   }
 
-
   public getName(): string {
     return this.name
+  }
+
+  public isPresent(): boolean {
+    return this.name !== '' && !!this.position.coordinates && !!this.position.orientation
   }
 }

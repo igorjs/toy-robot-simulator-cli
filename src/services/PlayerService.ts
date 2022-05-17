@@ -1,29 +1,48 @@
-import Robot from '../models/Robot'
 import IRobot from '../typings/interfaces/IRobot'
-import * as PositionService from './PositionService'
+import Robot from '../models/Robot'
 
-const PLAYERS: IRobot[] = [new Robot('Player 1'), new Robot('Player 2')]
+let currentPlayer: IRobot
 
-let currentPlayer = PLAYERS[0]
+const PLAYERS: IRobot[] = []
+
+export const addPlayer = (name: string): void => {
+  PLAYERS.push(new Robot(name))
+}
+
+export const setCurrentPlayer = (player: IRobot): void => {
+  currentPlayer = player
+}
 
 export const getCurrentPlayer = (): IRobot => {
   return currentPlayer
 }
 
 export const getOtherPlayers = (): IRobot[] => {
-  const currentPlayer = getCurrentPlayer()
-  return PLAYERS.filter((player) => player !== currentPlayer)
+  return PLAYERS.filter((player) => player !== getCurrentPlayer())
 }
 
 export const switchPlayer = (): void => {
-  const cPlayer = getCurrentPlayer()
-  currentPlayer = PLAYERS.find((player) => player !== cPlayer) || cPlayer
-  console.info(`Now you controlling: ${currentPlayer.getName()}`)
+  const activePlayer = PLAYERS.find((player) => player !== getCurrentPlayer()) || getCurrentPlayer()
+
+  setCurrentPlayer(activePlayer)
+
+  console.info(`Now you're controlling: ${activePlayer.getName()}`)
 }
 
 export const reportPlayers = (): void => {
-  PLAYERS.forEach((player) => {
-    console.info(`Reporting position for: ${player.getName()}`)
-    console.info(PositionService.report(player))
-  })
+  if (PLAYERS.length === 0 ) {
+    console.info(`There is no Players in the arena.`)
+  } else {
+    PLAYERS.forEach((player) => {
+      const name = player.getName()
+
+      const { coordinates, orientation } = player.getPosition()
+
+      if (coordinates && orientation) {
+        console.info(`${name} is ${coordinates?.x},${coordinates?.y},${orientation}`)
+      } else {
+        console.info(`${name} is not in the arena yet!`)
+      }
+    })
+  }
 }
