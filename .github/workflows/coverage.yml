@@ -1,0 +1,25 @@
+name: Coverage
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  coverage:
+    name: Update Coverage Status
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 17
+        uses: actions/setup-node@v1
+        with:
+          node-version: 17
+
+      - name: Collect Coverage
+        run: |
+          npm ci
+          npm run test:ci
+          bash <(curl -s https://codecov.io/bash)
